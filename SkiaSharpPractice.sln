@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkiaSharpPractice.Android", "SkiaSharpPractice.Android\SkiaSharpPractice.Android.csproj", "{DBB1AF2D-F93E-44F3-BBE5-9515069FA2E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkiaSharpPractice", "SkiaSharpPractice\SkiaSharpPractice.csproj", "{8AAB55E8-342A-47B1-9C83-1B775F33DF1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBB1AF2D-F93E-44F3-BBE5-9515069FA2E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBB1AF2D-F93E-44F3-BBE5-9515069FA2E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBB1AF2D-F93E-44F3-BBE5-9515069FA2E7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DBB1AF2D-F93E-44F3-BBE5-9515069FA2E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBB1AF2D-F93E-44F3-BBE5-9515069FA2E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBB1AF2D-F93E-44F3-BBE5-9515069FA2E7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8AAB55E8-342A-47B1-9C83-1B775F33DF1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AAB55E8-342A-47B1-9C83-1B775F33DF1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AAB55E8-342A-47B1-9C83-1B775F33DF1E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8AAB55E8-342A-47B1-9C83-1B775F33DF1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AAB55E8-342A-47B1-9C83-1B775F33DF1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AAB55E8-342A-47B1-9C83-1B775F33DF1E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CCD882C4-0CA5-4A84-B00C-A0B34C575EFA}
+	EndGlobalSection
+EndGlobal
