@@ -13,31 +13,17 @@
     </ContentPage.BindingContext>
 
     <Grid BackgroundColor="White" VerticalOptions="FillAndExpand">
-
-        <skia:SKCanvasView x:Name="canvasView"
-                           PaintSurface="OnCanvasViewPaintSurface" />
+        <skia:SKCanvasView x:Name="canvasView" PaintSurface="OnCanvasViewPaintSurface" />
 
         <Grid.Effects>
-            <tt:TouchEffect Capture="True"
-                            TouchAction="OnTouchEffectAction" />
+            <tt:TouchEffect Capture="True" TouchAction="OnTouchEffectAction" />
         </Grid.Effects>
-        
     </Grid>
 
-    <!--<skia:SKCanvasView PaintSurface="OnCanvasViewPaintSurface">
+    <!--<skia:SKCanvasView x:Name="canvasView" PaintSurface="OnCanvasViewPaintSurface">
         <skia:SKCanvasView.GestureRecognizers>
             <TapGestureRecognizer Tapped="OnCanvasViewTapped" />
         </skia:SKCanvasView.GestureRecognizers>
     </skia:SKCanvasView>-->
-
-    <!--<Grid BackgroundColor="White"
-              VerticalOptions="FillAndExpand">
-        <skia:SKCanvasView x:Name="canvasView"
-                               PaintSurface="canvasView_PaintSurface" />
-        <Grid.Effects>
-            <tt:TouchEffect Capture="True"
-                                TouchAction="OnTouchEffectAction" />
-        </Grid.Effects>
-    </Grid>-->
 
 </ContentPage>
