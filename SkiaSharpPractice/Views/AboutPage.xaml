@@ -2,17 +2,42 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SkiaSharpPractice.Views.AboutPage"
+             xmlns:tt="clr-namespace:TouchTracking.Forms;assembly=TouchTracking.Forms"
              xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              xmlns:vm="clr-namespace:SkiaSharpPractice.ViewModels"
              Title="{Binding Title}">
-    
+    <!--xmlns:tt="clr-namespace:TouchTracking"-->
+
     <ContentPage.BindingContext>
         <vm:AboutViewModel />
     </ContentPage.BindingContext>
 
+    <Grid BackgroundColor="White" VerticalOptions="FillAndExpand">
 
         <skia:SKCanvasView x:Name="canvasView"
-                           PaintSurface="canvasView_PaintSurface" />
+                           PaintSurface="OnCanvasViewPaintSurface" />
 
+        <Grid.Effects>
+            <tt:TouchEffect Capture="True"
+                            TouchAction="OnTouchEffectAction" />
+        </Grid.Effects>
+        
+    </Grid>
+
+    <!--<skia:SKCanvasView PaintSurface="OnCanvasViewPaintSurface">
+        <skia:SKCanvasView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCanvasViewTapped" />
+        </skia:SKCanvasView.GestureRecognizers>
+    </skia:SKCanvasView>-->
+
+    <!--<Grid BackgroundColor="White"
+              VerticalOptions="FillAndExpand">
+        <skia:SKCanvasView x:Name="canvasView"
+                               PaintSurface="canvasView_PaintSurface" />
+        <Grid.Effects>
+            <tt:TouchEffect Capture="True"
+                                TouchAction="OnTouchEffectAction" />
+        </Grid.Effects>
+    </Grid>-->
 
 </ContentPage>
