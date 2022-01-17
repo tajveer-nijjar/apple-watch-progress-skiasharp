@@ -6,6 +6,7 @@ using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System.IO;
 using System.Reflection;
+using TouchTracking;
 
 namespace SkiaSharpPractice.Views
 {
@@ -89,19 +90,15 @@ namespace SkiaSharpPractice.Views
             try
             {
                 showFill = !showFill;
-                x = args.Location.X;
-                y = args.Location.Y;
-                
+
+                //x = args.Location.X;
+                //y = args.Location.X;
+
+                var point = ConvertToPixel(args.Location);
+                x = point.X;
+                y = point.Y;
+
                 canvasView.InvalidateSurface();
-
-                ////canvasView.InvalidateSurface();
-                //var canvas = new SKCanvas(_savedBitmap);
-
-                //canvas.Clear();
-                //canvas?.DrawLine(0, 0, args.Location.X, args.Location.Y, _whiteStrokePaint);
-
-                //canvasView.InvalidateSurface();
-                //UpdateBitmap();
             }
             catch (Exception e)
             {
@@ -109,47 +106,22 @@ namespace SkiaSharpPractice.Views
             }
         }
 
-        void UpdateBitmap()
-        {
-            using (SKCanvas saveBitmapCanvas = new SKCanvas(_savedBitmap))
-            {
-                saveBitmapCanvas.Clear();
-
-                saveBitmapCanvas.DrawLine(0, 0, 10, 60, _whiteStrokePaint);
-
-                //foreach (SKPath path in completedPaths)
-                //{
-                //    saveBitmapCanvas.DrawPath(path, paint);
-                //}
-
-                //foreach (SKPath path in inProgressPaths.Values)
-                //{
-                //    saveBitmapCanvas.DrawPath(path, paint);
-                //}
-            }
-
-            //canvasView.InvalidateSurface();
-        }
-
-
         private void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs e)
         {
             var info = e.Info;
             var surface = e.Surface;
             var canvas = surface.Canvas;
 
-            //// Render the bitmap
-            //canvas.DrawBitmap(_savedBitmap, 0, 0);
+            int width = e.Info.Width;
+            int height = e.Info.Height;
 
             canvas.Clear(SKColors.CornflowerBlue);
 
-            int width = e.Info.Width;
-            int height = e.Info.Height;
 
             // Green big ground.
             //canvas.Translate(width / 2, height / 2); // Moving the x, y axis to the middle of the screen.
             var scaleFactor = width / 210f;
-            canvas.Scale(scaleFactor);
+            //canvas.Scale(scaleFactor);
             // To accommodate the cat
             //canvas.Scale(Math.Min(width / 210f, height / 520f));
             DrawGround(canvas);
@@ -157,8 +129,8 @@ namespace SkiaSharpPractice.Views
             //canvas.DrawLine(0, 0,50.8182f, 150.9091f, _whiteStrokePaint);
             //canvas.DrawLine(259.6364f, 179.6364f, 0, 0, _whiteStrokePaint);
 
-            canvas.DrawLine(0, 0, x / 2, y / 2, _whiteStrokePaint);
-            //canvas.DrawLine(0, 0, 10, 40, _whiteStrokePaint);
+            canvas.DrawLine(width / 2, height / 2, x, y, _whiteStrokePaint);
+            //canvas.DrawLine(0, 0, x, y, _whiteStrokePaint);
         }
 
         private void DrawGround(SKCanvas canvas)
@@ -166,12 +138,22 @@ namespace SkiaSharpPractice.Views
             canvas.DrawCircle(new SKPoint(0, 0), 100, _greenGroundPaint);
 
             // Blue circle.
-            canvas.Scale(1.5f);
+            //canvas.Scale(1.5f);
             canvas.DrawCircle(new SKPoint(0, 0), 20, _blueCenterColor);
 
             //White pitch.
             _pitchRectangle = SKRect.Create(-5, -8, 10, 16);
             canvas.DrawRect(_pitchRectangle, _pitchColor);
+        }
+
+        SKPoint ConvertToPixel(TouchTrackingPoint pt)
+        {
+            var point = new SKPoint((float)(canvasView.CanvasSize.Width * pt.X / canvasView.Width),
+                               (float)(canvasView.CanvasSize.Height * pt.Y / canvasView.Height));
+            Console.WriteLine($"PT   : X={pt.X}, Y={pt.Y} \n");
+            Console.WriteLine($"Point: {point}\n");
+
+            return point;
         }
     }
 }
