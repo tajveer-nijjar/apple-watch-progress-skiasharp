@@ -12,16 +12,14 @@ namespace SkiaSharpPractice.Views
 {
     public partial class AboutPage : ContentPage
     {
-        private SKPaint _greenGroundPaint, _blueCenterColor, _pitchColor;
+        private SKPaint _greenGroundPaint, _blueCenterColor, _pitchColor, _dotColor;
         private SKRect _pitchRectangle;
-        private SKMatrix _matrix;
         private SKPaint _whiteStrokePaint; //For hours, minutes and seconds hand.
         private SKPaint _whiteFillColor; //Four minute and hour dots.
-        private SKBitmap _savedBitmap;
-        private bool showFill = true;
         private float _lineX = 0f, _lineY = 0f;
         private int _centerX, _centerY, _height, _width, _greenGroundPadding = 20;
         private bool _initialLoad = true;
+
 
         public AboutPage()
         {
@@ -45,6 +43,12 @@ namespace SkiaSharpPractice.Views
                 Color = SKColors.White
             };
 
+            _dotColor = new SKPaint
+            {
+                Style = SKPaintStyle.Fill,
+                Color = SKColors.Yellow
+            };
+
             _whiteStrokePaint = new SKPaint
             {
                 Style = SKPaintStyle.Stroke,
@@ -53,15 +57,6 @@ namespace SkiaSharpPractice.Views
                 StrokeCap = SKStrokeCap.Round,
                 IsAntialias = true
             };
-
-            _matrix = SKMatrix.CreateIdentity();
-
-            //Refreshing the screen 60 times a second, which is a typical refresh rate for video display.
-            //Device.StartTimer(TimeSpan.FromSeconds(1f / 60), () =>
-            //{
-            //    canvasView.InvalidateSurface();
-            //    return true;
-            //});
 
             _whiteFillColor = new SKPaint
             {
@@ -74,10 +69,6 @@ namespace SkiaSharpPractice.Views
         {
             try
             {
-                //var canvas = new SKCanvas(_savedBitmap);
-                //canvas.DrawLine(0, 0, 10, 60, _whiteStrokePaint);
-
-                showFill = !showFill;
                 canvasView.InvalidateSurface();
             }
             catch (Exception e2)
@@ -88,14 +79,8 @@ namespace SkiaSharpPractice.Views
 
         private void OnTouchEffectAction(object sender, TouchTracking.TouchActionEventArgs args)
         {
-
             try
             {
-                showFill = !showFill;
-
-                //x = args.Location.X;
-                //y = args.Location.X;
-
                 var point = ConvertToPixel(args.Location);
                 _lineX = point.X;
                 _lineY = point.Y;
@@ -131,9 +116,6 @@ namespace SkiaSharpPractice.Views
             //canvas.Scale(Math.Min(width / 210f, height / 520f));
             DrawGround(canvas);
 
-            //canvas.DrawLine(0, 0,50.8182f, 150.9091f, _whiteStrokePaint);
-            //canvas.DrawLine(259.6364f, 179.6364f, 0, 0, _whiteStrokePaint);
-
             if(!_initialLoad)
             {
                 canvas.DrawLine(_width / 2, _height / 2, _lineX, _lineY, _whiteStrokePaint);
@@ -151,6 +133,8 @@ namespace SkiaSharpPractice.Views
             // Blue circle.
             //canvas.Scale(1.5f);
             canvas.DrawCircle(new SKPoint(_centerX, _centerY), radius / 2.5f, _blueCenterColor);
+
+            canvas.DrawCircle(new SKPoint(_lineX, _lineY), 10, _dotColor);
 
             //White pitch.
             _pitchRectangle = SKRect.Create(_width / 2 - 30, _height / 2 - 50, 60, 100);
