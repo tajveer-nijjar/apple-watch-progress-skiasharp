@@ -20,10 +20,5 @@
         </Grid.Effects>
     </Grid>
 
-    <!--<skia:SKCanvasView x:Name="canvasView" PaintSurface="OnCanvasViewPaintSurface">
-        <skia:SKCanvasView.GestureRecognizers>
-            <TapGestureRecognizer Tapped="OnCanvasViewTapped" />
-        </skia:SKCanvasView.GestureRecognizers>
-    </skia:SKCanvasView>-->
 
 </ContentPage>

@@ -34,7 +34,7 @@ namespace SkiaSharpPractice.Views
             _blueCenterColor = new SKPaint
             {
                 Style = SKPaintStyle.Fill,
-                Color = SKColors.Blue
+                Color = SKColors.Orange
             };
 
             _pitchColor = new SKPaint
@@ -105,8 +105,7 @@ namespace SkiaSharpPractice.Views
             _centerX = _width / 2;
             _centerY = _height / 2;
 
-            canvas.Clear(SKColors.CornflowerBlue);
-
+            canvas.Clear(SKColors.CadetBlue);
 
             // Green big ground.
             //canvas.Translate(width / 2, height / 2); // Moving the x, y axis to the middle of the screen.
@@ -122,6 +121,9 @@ namespace SkiaSharpPractice.Views
             }
             //canvas.DrawLine(0, 0, x, y, _whiteStrokePaint);
 
+            Console.WriteLine($"X: {_lineX}, Y: {_lineY}");
+            //Console.WriteLine($"Height: {canvasView.CanvasSize.Height}     Width: {canvasView.CanvasSize.Width}");
+
             _initialLoad = false;
         }
 
@@ -131,7 +133,6 @@ namespace SkiaSharpPractice.Views
             canvas.DrawCircle(new SKPoint(_centerX, _centerY), radius - _greenGroundPadding, _greenGroundPaint);
 
             // Blue circle.
-            //canvas.Scale(1.5f);
             canvas.DrawCircle(new SKPoint(_centerX, _centerY), radius / 2.5f, _blueCenterColor);
 
             canvas.DrawCircle(new SKPoint(_lineX, _lineY), 10, _dotColor);
